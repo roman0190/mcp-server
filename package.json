@@ -2,12 +2,12 @@
   "name": "mcp-server",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/index.js",
-    "dev": "nodemon dist/index.js",
-    "build": "tsc",
+    "dev": "nodemon --exec \"node -r ts-node/register src/index.ts\"",
+    "build": "npx tsc",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "postinstall": "npm run build"
@@ -16,26 +16,24 @@
     "type": "git",
     "url": "git+https://github.com/roman0190/mcp-server.git"
   },
-  "keywords": [],
+  "keywords": ["mcp", "server", "typescript"],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/roman0190/mcp-server/issues"
   },
   "homepage": "https://github.com/roman0190/mcp-server#readme",
-  "description": "",
+  "description": "A simple MCP (Model Context Protocol) server",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.13.1",
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.3",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
-    "emoji-toolkit": "^9.0.1",
-    "express": "^5.1.0",
-    "tsc": "^2.0.4",
+    "express": "^4.21.2",
     "zod": "^3.25.67"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
     "@types/node": "^24.0.4",
     "nodemon": "^3.1.10",
     "rimraf": "^6.0.1",
