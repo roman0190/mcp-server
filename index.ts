@@ -94,8 +94,17 @@ app.get("/", (req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`✅ MCP Server running at http://localhost:${PORT}`);
-  console.log(`📡 MCP endpoint available at http://localhost:${PORT}/mcp`);
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+const HOST = process.env.NODE_ENV === "production" ? "0.0.0.0" : "localhost";
+
+app.listen(PORT, HOST, () => {
+  const baseUrl =
+    process.env.NODE_ENV === "production"
+      ? process.env.HOST_URL || `https://your-app-name.onrender.com`
+      : `http://localhost:${PORT}`;
+
+  console.log(
+    `✅ MCP Server running in ${process.env.NODE_ENV || "development"} mode`
+  );
+  console.log(`📡 MCP endpoint available at ${baseUrl}/mcp`);
 });
